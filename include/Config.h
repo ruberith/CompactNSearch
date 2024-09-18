@@ -15,8 +15,23 @@ namespace CompactNSearch
 #ifdef _MSC_VER
 	#include <ppl.h>
 #elif defined(__APPLE__) && defined(__clang__)
-	#include <oneapi/dpl/execution>
-	#include <oneapi/dpl/algorithm>
+	#include <dispatch/dispatch.h>
+	#include <iterator>
+
+	namespace dispatch
+	{
+		template <typename _Iterator, typename _Function>
+		void parallel_for_each(_Iterator first, _Iterator last, const _Function& _Func)
+		{
+			dispatch_apply(
+				std::distance(first, last),
+				DISPATCH_APPLY_AUTO,
+				^(size_t i) {
+					_Func(*std::next(first, i));
+				}
+			);
+		}
+	}
 #else
 	#include <parallel/algorithm>
 #endif

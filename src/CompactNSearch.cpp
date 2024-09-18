@@ -237,7 +237,7 @@ NeighborhoodSearch::update_point_sets()
 #ifdef _MSC_VER
 	concurrency::parallel_for_each(
 #elif defined(__APPLE__) && defined(__clang__)
-	std::for_each(oneapi::dpl::execution::par,
+	dispatch::parallel_for_each(
 #else
 	__gnu_parallel::for_each(
 #endif
@@ -318,7 +318,7 @@ NeighborhoodSearch::erase_empty_entries(std::vector<unsigned int> const& to_dele
 #ifdef _MSC_VER
 	concurrency::parallel_for_each(
 #elif defined(__APPLE__) && defined(__clang__)
-	std::for_each(oneapi::dpl::execution::par,
+	dispatch::parallel_for_each(
 #else
 	__gnu_parallel::for_each(
 #endif
@@ -418,7 +418,7 @@ NeighborhoodSearch::query()
 #ifdef _MSC_VER
 	concurrency::parallel_for_each(
 #elif defined(__APPLE__) && defined(__clang__)
-	std::for_each(oneapi::dpl::execution::par,
+	dispatch::parallel_for_each(
 #else
 	__gnu_parallel::for_each(
 #endif
@@ -480,7 +480,7 @@ NeighborhoodSearch::query()
 #ifdef _MSC_VER
 	concurrency::parallel_for_each(
 #elif defined(__APPLE__) && defined(__clang__)
-	std::for_each(oneapi::dpl::execution::par,
+	dispatch::parallel_for_each(
 #else
 	__gnu_parallel::for_each(
 #endif

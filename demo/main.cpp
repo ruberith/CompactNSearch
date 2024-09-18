@@ -154,7 +154,7 @@ advect()
 #ifdef _MSC_VER
 	concurrency::parallel_for_each(
 #elif defined(__APPLE__) && defined(__clang__)
-	std::for_each(oneapi::dpl::execution::par,
+	dispatch::parallel_for_each(
 #else
 	__gnu_parallel::for_each(
 #endif
